@@ -55,6 +55,45 @@
       </div>
     </section>
 
+    <!-- Profile -->
+    <section id="profile" class="section">
+      <div class="card">
+        <div class="profile-intro">
+          <h2>Before we begin</h2>
+          <p>Tell us a little about yourself. This helps us understand who is taking the assessment.</p>
+        </div>
+
+        <form id="profile-form" class="profile-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="age-select">Age</label>
+            <select class="form-select" id="age-select" required>
+              <option value="" selected disabled>Select your age</option>
+              <option value="13-15">13–15</option>
+              <option value="16-17">16–17</option>
+              <option value="18-19">18–19</option>
+              <option value="20-22">20–22</option>
+              <option value="23+">23+</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <span class="form-label" id="gender-label">Gender</span>
+            <div class="options-list" id="gender-options" role="radiogroup" aria-labelledby="gender-label">
+              <button type="button" class="option-btn" data-gender="male">Male</button>
+              <button type="button" class="option-btn" data-gender="female">Female</button>
+              <button type="button" class="option-btn" data-gender="non-binary">Non-binary</button>
+              <button type="button" class="option-btn" data-gender="prefer-not-to-say">Prefer not to say</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="btn-group">
+          <button class="btn btn-secondary" id="profile-back-btn">Back</button>
+          <button class="btn btn-primary" id="profile-continue-btn" disabled>Continue</button>
+        </div>
+      </div>
+    </section>
+
     <!-- Quiz -->
     <section id="quiz" class="section">
       <div class="card">

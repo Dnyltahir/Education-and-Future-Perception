@@ -2,9 +2,11 @@
   const TOTAL = QUIZ_QUESTIONS.length;
   let currentQuestion = 0;
   let answers = new Array(TOTAL).fill(null);
+  let profile = { age: null, gender: null };
 
   const sections = {
     landing: document.getElementById("landing"),
+    profile: document.getElementById("profile"),
     quiz: document.getElementById("quiz"),
     results: document.getElementById("results")
   };
@@ -18,7 +20,10 @@
     optionsList: document.getElementById("options-list"),
     prevBtn: document.getElementById("prev-btn"),
     nextBtn: document.getElementById("next-btn"),
-    resultContent: document.getElementById("result-content")
+    resultContent: document.getElementById("result-content"),
+    ageSelect: document.getElementById("age-select"),
+    genderOptions: document.getElementById("gender-options"),
+    profileContinueBtn: document.getElementById("profile-continue-btn")
   };
 
   function showSection(name) {
@@ -54,13 +59,42 @@
 
   function selectOption(index) {
     answers[currentQuestion] = index;
-    document.querySelectorAll(".option-btn").forEach((btn, i) => {
+    document.querySelectorAll("#options-list .option-btn").forEach((btn, i) => {
       btn.classList.toggle("selected", i === index);
     });
     els.nextBtn.disabled = false;
   }
 
+  function updateProfileContinue() {
+    const age = els.ageSelect.value;
+    const gender = profile.gender;
+    els.profileContinueBtn.disabled = !age || !gender;
+  }
+
+  function selectGender(value) {
+    profile.gender = value;
+    els.genderOptions.querySelectorAll(".option-btn").forEach((btn) => {
+      btn.classList.toggle("selected", btn.dataset.gender === value);
+    });
+    updateProfileContinue();
+  }
+
+  function showProfile() {
+    showSection("profile");
+    updateProfileContinue();
+  }
+
+  function resetProfile() {
+    profile = { age: null, gender: null };
+    els.ageSelect.value = "";
+    els.genderOptions.querySelectorAll(".option-btn").forEach((btn) => {
+      btn.classList.remove("selected");
+    });
+    els.profileContinueBtn.disabled = true;
+  }
+
   function startQuiz() {
+    profile.age = els.ageSelect.value;
     currentQuestion = 0;
     answers = new Array(TOTAL).fill(null);
     showSection("quiz");
@@ -174,6 +208,7 @@
 
   function retakeQuiz() {
     history.replaceState(null, "", window.location.pathname);
+    resetProfile();
     showSection("landing");
   }
 
@@ -208,7 +243,13 @@
     }
   }
 
-  document.getElementById("start-btn").addEventListener("click", startQuiz);
+  document.getElementById("start-btn").addEventListener("click", showProfile);
+  document.getElementById("profile-back-btn").addEventListener("click", () => showSection("landing"));
+  document.getElementById("profile-continue-btn").addEventListener("click", startQuiz);
+  els.ageSelect.addEventListener("change", updateProfileContinue);
+  els.genderOptions.querySelectorAll(".option-btn").forEach((btn) => {
+    btn.addEventListener("click", () => selectGender(btn.dataset.gender));
+  });
   document.getElementById("next-btn").addEventListener("click", nextQuestion);
   document.getElementById("prev-btn").addEventListener("click", prevQuestion);
   document.getElementById("retake-btn").addEventListener("click", retakeQuiz);
