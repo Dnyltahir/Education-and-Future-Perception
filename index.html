@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Education & Future Perceptions — Discover your true archetype beyond quiet confusion. A research-based personality assessment for South Asian students.">
+  <title>Education & Future Perceptions</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="bg-pattern" aria-hidden="true"></div>
+  <div class="bg-gradient" aria-hidden="true"></div>
+
+  <div class="app-container">
+    <header class="site-header">
+      <div class="arch-frame">
+        <img src="assets/arch-pattern.png" alt="Traditional South Asian decorative arch pattern">
+      </div>
+      <h1 class="site-title">Education & Future Perceptions</h1>
+      <p class="site-subtitle">From Fear-Driven Compliance to Self-Authored Purpose</p>
+      <p class="site-tagline">Research by Sher Abbas Ali Yar · Beaconhouse National University</p>
+    </header>
+
+    <!-- Landing -->
+    <section id="landing" class="section active">
+      <div class="card card-accent">
+        <div class="landing-hero">
+          <h2>No grades. No parents. No judgment.</h2>
+          <p>Answer 20 scenario-based questions to find out how your mind <em>actually</em> operates when nobody is watching.</p>
+          <p>Discover your true archetype and see through the quiet confusion.</p>
+        </div>
+
+        <blockquote class="landing-quote">
+          "In South Asia's high-stakes academic environment, education is often driven by collective expectation rather than individual curiosity. By asking teenagers about their fears rather than their dreams, this research uncovered a systemic state of quiet confusion."
+        </blockquote>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-number">20</div>
+            <div class="stat-label">Questions</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Dimensions</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Archetypes</div>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" id="start-btn">Begin Your Discovery</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz -->
+    <section id="quiz" class="section">
+      <div class="card">
+        <div class="quiz-header">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+          </div>
+          <div class="quiz-meta">
+            <span id="question-counter">Question 1 of 20</span>
+            <span id="category-label"></span>
+          </div>
+        </div>
+
+        <span class="category-badge" id="category-badge"></span>
+        <p class="question-scenario" id="question-text"></p>
+
+        <div class="options-list" id="options-list"></div>
+
+        <div class="btn-group">
+          <button class="btn btn-secondary" id="prev-btn" disabled>Back</button>
+          <button class="btn btn-primary" id="next-btn" disabled>Next</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section id="results" class="section">
+      <div id="result-content"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="retake-btn">Retake Quiz</button>
+        <button class="btn btn-primary" id="share-btn">Copy Results Link</button>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Education & Future Perceptions · BNU Faculty of Visual Communication Design</p>
+      <p>Supervised by Mehmil Ishtiaq · F2022-752</p>
+    </footer>
+  </div>
+
+  <script src="js/questions.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
