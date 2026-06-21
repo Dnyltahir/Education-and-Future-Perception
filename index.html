@@ -13,13 +13,21 @@
 
   <div class="app-container">
     <header class="site-header">
-      <div class="arch-frame">
-        <img src="assets/arch-pattern.png" alt="Traditional South Asian decorative arch pattern">
+      <div class="header-bar">
+        <img class="header-logo" src="assets/logo.png" alt="BNU Visual Communication Design logo">
+        <nav class="header-nav" aria-label="Site navigation">
+          <button type="button" class="header-link" id="about-link" onclick="showInfoPage('about')">About</button>
+          <button type="button" class="header-link" id="connect-link" onclick="showInfoPage('contact')">Contact Us</button>
+        </nav>
       </div>
       <h1 class="site-title">Education & Future Perceptions</h1>
       <p class="site-subtitle">From Fear-Driven Compliance to Self-Authored Purpose</p>
-      <p class="site-tagline">Research by Sher Abbas Ali Yar · Beaconhouse National University</p>
+      <p class="site-tagline">Visual Communication Design · Beaconhouse National University</p>
     </header>
+
+    <div class="page-logo arch-frame">
+      <img src="assets/arch-pattern.png" alt="Traditional South Asian decorative arch pattern">
+    </div>
 
     <!-- Landing -->
     <section id="landing" class="section active">
@@ -49,8 +57,12 @@
           </div>
         </div>
 
-        <div class="btn-group">
-          <button class="btn btn-primary" id="start-btn">Begin Your Discovery</button>
+        <div class="role-select">
+          <p class="role-select-label">Who is taking this assessment?</p>
+          <div class="btn-group landing-actions role-actions">
+            <button type="button" class="btn btn-primary" id="start-btn" data-action="student">I'm a Student</button>
+            <button type="button" class="btn btn-secondary" id="parent-start-btn" data-action="parent">I'm a Parent</button>
+          </div>
         </div>
       </div>
     </section>
@@ -94,6 +106,64 @@
       </div>
     </section>
 
+    <!-- Parent Profile -->
+    <section id="parent-profile" class="section">
+      <div class="card">
+        <div class="profile-intro">
+          <h2>Parent assessment</h2>
+          <p>Tell us about yourself and your child. You'll then answer 20 questions about how you see their education and future.</p>
+        </div>
+
+        <form id="parent-profile-form" class="profile-form" novalidate>
+          <div class="form-group">
+            <span class="form-label" id="parent-role-label">I am the child's</span>
+            <div class="options-list" id="parent-role-options" role="radiogroup" aria-labelledby="parent-role-label">
+              <button type="button" class="option-btn" data-role="father">Father</button>
+              <button type="button" class="option-btn" data-role="mother">Mother</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="parent-age-select">Your age</label>
+            <select class="form-select" id="parent-age-select" required>
+              <option value="" selected disabled>Select your age</option>
+              <option value="30-34">30–34</option>
+              <option value="35-39">35–39</option>
+              <option value="40-44">40–44</option>
+              <option value="45-49">45–49</option>
+              <option value="50+">50+</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <span class="form-label" id="child-gender-label">Child's gender</span>
+            <div class="options-list" id="child-gender-options" role="radiogroup" aria-labelledby="child-gender-label">
+              <button type="button" class="option-btn" data-gender="male">Male</button>
+              <button type="button" class="option-btn" data-gender="female">Female</button>
+              <button type="button" class="option-btn" data-gender="non-binary">Non-binary</button>
+              <button type="button" class="option-btn" data-gender="prefer-not-to-say">Prefer not to say</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="child-age-select">Child's age</label>
+            <select class="form-select" id="child-age-select" required>
+              <option value="" selected disabled>Select your child's age</option>
+              <option value="13-15">13–15</option>
+              <option value="16-17">16–17</option>
+              <option value="18-19">18–19</option>
+              <option value="20-22">20–22</option>
+            </select>
+          </div>
+        </form>
+
+        <div class="btn-group">
+          <button class="btn btn-secondary" id="parent-profile-back-btn">Back</button>
+          <button class="btn btn-primary" id="parent-profile-continue-btn" disabled>Continue to Questions</button>
+        </div>
+      </div>
+    </section>
+
     <!-- Quiz -->
     <section id="quiz" class="section">
       <div class="card">
@@ -128,14 +198,51 @@
       </div>
     </section>
 
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="card">
+        <h2 class="info-page-title">About</h2>
+        <p>Education & Future Perceptions is a research-based personality assessment exploring how South Asian students navigate academic pressure, family expectations, and personal purpose.</p>
+        <p>Through 20 scenario-based questions across four dimensions, participants discover their archetype and move from fear-driven compliance toward self-authored purpose.</p>
+        <p class="info-page-meta">Visual Communication Design · Beaconhouse National University</p>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="showInfoPage('landing')">Back to Home</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="card">
+        <h2 class="info-page-title">Contact Us</h2>
+        <p>For research inquiries, collaboration, or feedback about this project, reach out to the Visual Communication Design department at Beaconhouse National University.</p>
+        <p class="info-page-meta">Created by Sher Abbas Aliyar</p>
+        <p><a href="mailto:info@bnu.edu.pk">info@bnu.edu.pk</a></p>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="showInfoPage('landing')">Back to Home</button>
+        </div>
+      </div>
+    </section>
+
     <footer class="site-footer">
       <p>Education & Future Perceptions · BNU Departement of Visual Communication Design</p>
       <p>Created by Sher Abbas Aliyar</p>
     </footer>
   </div>
 
-  <script src="js/questions.js"></script>
-  <script src="js/scoring.js"></script>
-  <script src="js/app.js"></script>
+  <script>
+    function showInfoPage(pageId) {
+      document.querySelectorAll(".section").forEach(function (el) {
+        el.classList.remove("active");
+      });
+      var page = document.getElementById(pageId);
+      if (page) page.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  </script>
+
+  <script src="js/questions.js?v=3"></script>
+  <script src="js/scoring.js?v=3"></script>
+  <script src="js/app.js?v=3"></script>
 </body>
 </html>

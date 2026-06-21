@@ -64,48 +64,102 @@ body {
   margin: 0 auto;
   padding: 24px 20px 48px;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header */
 .site-header {
   text-align: center;
-  padding: 32px 0 24px;
+  padding: 24px 0 24px;
 }
 
-.arch-frame {
-  width: 120px;
-  height: 160px;
-  margin: 0 auto 20px;
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(3, 49, 140, 0.08);
   position: relative;
+  z-index: 5;
 }
 
-.arch-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 60px 60px 8px 8px;
+.header-logo {
+  width: 52px;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.header-link {
+  background: var(--white);
+  border: 2px solid rgba(3, 49, 140, 0.12);
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--royal-blue);
+  cursor: pointer;
+  transition: var(--transition);
   box-shadow: var(--shadow);
 }
 
+.header-link:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: rgba(21, 182, 200, 0.06);
+}
+
+.page-logo.arch-frame {
+  width: 100px;
+  height: 132px;
+  margin: 0 auto 24px;
+}
+
+.page-logo.arch-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50px 50px 8px 8px;
+  box-shadow: var(--shadow);
+}
+
+.app-container:has(#results.active) .page-logo {
+  display: none;
+}
+
 .site-title {
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   font-weight: 700;
   color: var(--royal-blue);
   letter-spacing: -0.02em;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .site-subtitle {
-  font-size: 0.95rem;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
   color: var(--teal);
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .site-tagline {
-  font-size: 0.85rem;
+  font-size: clamp(0.82rem, 1.5vw, 0.95rem);
   color: var(--text-muted);
-  max-width: 480px;
+  max-width: 560px;
   margin: 0 auto;
 }
 
@@ -131,10 +185,15 @@ body {
   padding: 28px;
   box-shadow: var(--shadow);
   border: 1px solid rgba(3, 49, 140, 0.06);
+  width: 100%;
 }
 
 .card-accent {
   border-top: 3px solid var(--teal);
+}
+
+#landing .card-accent {
+  max-width: 100%;
 }
 
 /* Landing */
@@ -144,7 +203,7 @@ body {
 }
 
 .landing-hero h2 {
-  font-size: 1.35rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   color: var(--royal-blue);
   margin-bottom: 16px;
   line-height: 1.4;
@@ -152,8 +211,11 @@ body {
 
 .landing-hero p {
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: clamp(0.92rem, 1.8vw, 1.05rem);
   margin-bottom: 12px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .landing-quote {
@@ -258,6 +320,43 @@ body {
 
 .form-select:invalid {
   color: var(--text-muted);
+}
+
+.landing-actions {
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing-actions .btn {
+  width: 100%;
+}
+
+.role-select {
+  margin-top: 8px;
+}
+
+.role-select-label {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--royal-blue);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.role-actions {
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.role-actions .btn {
+  flex: 1;
+  min-width: 160px;
 }
 
 /* Buttons */
@@ -610,15 +709,197 @@ body {
   color: var(--text-muted);
 }
 
+.info-page-title {
+  font-size: 1.35rem;
+  color: var(--royal-blue);
+  margin-bottom: 16px;
+}
+
+.info-page-meta {
+  font-size: 0.9rem;
+  color: var(--teal);
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+#about .card p,
+#contact .card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  line-height: 1.65;
+}
+
+#contact .card a {
+  color: var(--royal-blue);
+  font-weight: 600;
+}
+
 .site-footer a {
   color: var(--teal);
   text-decoration: none;
 }
 
-/* Responsive */
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(26, 39, 68, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.modal-overlay.is-open {
+  display: flex;
+  opacity: 1;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal-card {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 32px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  border-top: 3px solid var(--teal);
+}
+
+.modal-card h2 {
+  color: var(--royal-blue);
+  font-size: 1.35rem;
+  margin-bottom: 16px;
+}
+
+.modal-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  line-height: 1.65;
+}
+
+.modal-meta {
+  font-size: 0.85rem;
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(3, 49, 140, 0.06);
+  color: var(--royal-blue);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.modal-close:hover {
+  background: rgba(3, 49, 140, 0.12);
+}
+
+/* Responsive — iPad */
+@media (min-width: 768px) {
+  .app-container {
+    max-width: 860px;
+    padding: 32px 40px 56px;
+  }
+
+  .header-logo {
+    width: 60px;
+  }
+
+  .header-link {
+    padding: 10px 22px;
+    font-size: 0.9rem;
+  }
+
+  .page-logo.arch-frame {
+    width: 120px;
+    height: 160px;
+    margin-bottom: 28px;
+  }
+
+  .card {
+    padding: 36px 40px;
+  }
+
+  .landing-quote {
+    padding: 20px 24px;
+    font-size: 0.95rem;
+  }
+
+  .stat-item {
+    padding: 16px 12px;
+  }
+
+  .stat-number {
+    font-size: 1.75rem;
+  }
+}
+
+/* Responsive — PC */
+@media (min-width: 1024px) {
+  .app-container {
+    max-width: 920px;
+    padding: 40px 48px 64px;
+  }
+
+  .site-header {
+    padding: 32px 0 36px;
+  }
+
+  .header-logo {
+    width: 68px;
+  }
+
+  .card {
+    padding: 40px 48px;
+  }
+
+  .bg-pattern {
+    opacity: 0.06;
+    background-size: 480px;
+  }
+}
+
+/* Responsive — mobile */
 @media (max-width: 480px) {
   .app-container {
     padding: 16px 14px 32px;
+  }
+
+  .role-actions {
+    flex-direction: column;
+  }
+
+  .role-actions .btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .header-nav {
+    gap: 8px;
+  }
+
+  .header-link {
+    padding: 8px 14px;
+    font-size: 0.8rem;
   }
 
   .card {

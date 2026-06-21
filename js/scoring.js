@@ -8,17 +8,17 @@ const ARCHETYPES = {
     color: "#A67437",
     description: "You are deeply stifled by traditional South Asian academic rote-learning. You want to create things from scratch and forge your own path.",
     quietConfusion: "You are likely passing your exams but feel completely detached, often experiencing high anxiety because you feel like the \"black sheep\" of the family.",
-    futures: ["Entrepreneurship", "Software product design", "Creative direction", "Media", "Tech innovation"],
-    microProject: "Don't change your major yet. This weekend, spend 2 hours building a simple website landing page using a free no-code tool just to see how it feels to create something.",
+    futures: ["Entrepreneurship", "Visual communication", "Creative direction", "Media production", "Independent design studios"],
+    microProject: "Don't change your major yet. This weekend, spend 2 hours creating a small poster series or storyboard for a short film idea just to see how it feels to make something original.",
     vocabulary: [
-      "visual systems and user experience architecture",
-      "product design and creative problem-solving",
-      "innovation and digital entrepreneurship"
+      "visual storytelling and communication design",
+      "creative direction and problem-solving",
+      "innovation and independent creative practice"
     ],
     mentors: [
-      { name: "From Lahore to Silicon Valley", story: "A student who built apps in secret during O-Levels, then pitched a startup to parents using industry salary data instead of passion arguments." },
-      { name: "The Designer Who Chose UX", story: "Someone from Mumbai who studied engineering for two years, then pivoted to UX design with a portfolio that spoke louder than their degree." },
-      { name: "The Dhaka Creator", story: "A young founder who turned a gaming hobby into a profitable digital agency while keeping family peace through gradual, evidence-based conversations." }
+      { name: "From Lahore to the Design Studio", story: "A student who built a portfolio in secret during O-Levels, then showed parents real client work instead of arguing from passion alone." },
+      { name: "The Designer Who Chose Visual Arts", story: "Someone from Mumbai who studied commerce for two years, then pivoted to visual communication with a portfolio that spoke louder than their degree." },
+      { name: "The Dhaka Creator", story: "A young filmmaker who turned a theatre hobby into a respected creative practice while keeping family peace through gradual, evidence-based conversations." }
     ]
   },
   catalyst: {
@@ -51,18 +51,18 @@ const ARCHETYPES = {
     icon: "▣",
     color: "#03318C",
     description: "You genuinely love data, logic, and puzzles. You thrive in structured environments where hard work equals predictable results.",
-    quietConfusion: "Even though you are a good fit for fields like engineering or finance, your confusion stems from where you apply it. You might be studying mechanical engineering because of your parents, when your true logical passion is data science or financial economics.",
-    futures: ["Data architecture", "Financial analytics", "Research science", "Systems engineering"],
-    microProject: "Take a free 2-hour intro course on data analysis or financial modeling online. See which type of logical problem genuinely excites you.",
+    quietConfusion: "Even though you are a good fit for fields like architecture, finance, or research, your confusion stems from where you apply your logical mind. You might be studying engineering because of your parents, when your true passion is urban planning, economics, or museum research.",
+    futures: ["Urban planning", "Financial analytics", "Research science", "Architecture"],
+    microProject: "Take a free 2-hour intro session on architectural drawing, economic case studies, or museum research online. See which type of logical problem genuinely excites you.",
     vocabulary: [
-      "data science and analytical systems",
-      "quantitative research and financial modeling",
-      "systems engineering and computational thinking"
+      "research analysis and structured inquiry",
+      "quantitative research and financial planning",
+      "architectural thinking and systematic design"
     ],
     mentors: [
-      { name: "The Data Scientist", story: "An engineering student from Lahore who discovered data science through online courses and now leads analytics at a fintech company." },
-      { name: "The Research Mind", story: "Someone from Delhi who chose research science over corporate medicine, building a career in environmental data analysis." },
-      { name: "The Finance Analyst", story: "A student from Karachi who redirected mechanical engineering skills toward financial economics with family support through salary transparency." }
+      { name: "The Urban Planner", story: "An engineering student from Lahore who discovered city planning through a summer internship and now shapes public spaces with family support." },
+      { name: "The Research Mind", story: "Someone from Delhi who chose research science over corporate medicine, building a career in environmental field studies." },
+      { name: "The Finance Analyst", story: "A student from Karachi who redirected analytical skills toward financial economics with family support through salary transparency." }
     ]
   },
   harmonizer: {
@@ -74,7 +74,7 @@ const ARCHETYPES = {
     color: "#B3C391",
     description: "You value stability, family alignment, and order. You are comfortable working within established institutions and bringing people together.",
     quietConfusion: "You get paralyzed by conflict. You want to make your parents happy, but you are terrified that you don't have the \"brilliance\" to survive hyper-competitive fields like corporate law or surgery.",
-    futures: ["Project management", "Corporate administration", "Supply chain logistics", "Specialized tech consultancy"],
+    futures: ["Project management", "Corporate administration", "Supply chain logistics", "Public sector administration"],
     microProject: "Organize a small study group or family event this week. Notice how your natural planning skills create calm and structure for everyone around you.",
     vocabulary: [
       "project management and operational excellence",
@@ -84,16 +84,16 @@ const ARCHETYPES = {
     mentors: [
       { name: "The Steady Leader", story: "A student from Lahore who chose project management over medicine, proving to family that leadership roles carry equal prestige." },
       { name: "The Administrator", story: "Someone from Mumbai who found fulfillment in corporate operations, balancing family expectations with genuine aptitude." },
-      { name: "The Consultant", story: "A graduate from Islamabad who built a career in tech consultancy by framing it as a stable, globally respected profession." }
+      { name: "The Consultant", story: "A graduate from Islamabad who built a career in management consultancy by framing it as a stable, globally respected profession." }
     ]
   }
 };
 
-function calculateScores(answers) {
+function calculateScores(answers, questions) {
   const scores = { I: 0, E: 0, S: 0, A: 0, C: 0, Sec: 0, H: 0, T: 0 };
 
   answers.forEach((optionIndex, questionIndex) => {
-    const question = QUIZ_QUESTIONS[questionIndex];
+    const question = questions[questionIndex];
     const option = question.options[optionIndex];
     Object.entries(option.scores).forEach(([key, value]) => {
       scores[key] += value;
