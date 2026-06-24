@@ -222,6 +222,10 @@
   }
 
   function buildResultHTML(archetype, dimensions, code, isParent) {
+    const description = isParent ? archetype.parentDescription : archetype.description;
+    const quietConfusion = isParent ? archetype.parentQuietConfusion : archetype.quietConfusion;
+    const microProject = isParent ? archetype.parentMicroProject : archetype.microProject;
+
     const dimBars = dimensions.map((d) => {
       const fillColor = d.percent >= 50 ? "var(--royal-blue)" : "var(--teal)";
       const displayPercent = d.percent >= 50 ? d.percent : 100 - d.percent;
@@ -255,6 +259,12 @@
     const vocabIntro = isParent
       ? "Use these phrases when talking to your child about their strengths:"
       : "Use these phrases when talking to family about your strengths:";
+    const actionATitle = isParent
+      ? "Action A — A Small Experiment To Suggest"
+      : "Action A — The \"Micro-Dose\" Project";
+    const actionBIntro = isParent
+      ? "Three figures from Pakistan, Afghanistan, or Persian culture whose personality and achievements resemble what you may be seeing in your child:"
+      : "Three figures from Pakistan, Afghanistan, or Persian culture who shared a similar personality and achieved in comparable ways:";
 
     return `
       <div class="result-hero" style="background: linear-gradient(135deg, ${archetype.color}, var(--royal-blue))">
@@ -266,13 +276,13 @@
 
       <div class="card result-section">
         <h3>${whoTitle}</h3>
-        <p>${archetype.description}</p>
+        <p>${description}</p>
       </div>
 
       <div class="card result-section">
         <h3>${trapTitle}</h3>
         <div class="trap-box">
-          <p>${archetype.quietConfusion}</p>
+          <p>${quietConfusion}</p>
         </div>
       </div>
 
@@ -289,11 +299,12 @@
       <div class="card result-section">
         <h3>${nextTitle}</h3>
         <div class="action-card">
-          <h4>Action A — The "Micro-Dose" Project</h4>
-          <p>${archetype.microProject}</p>
+          <h4>${actionATitle}</h4>
+          <p>${microProject}</p>
         </div>
         <div class="action-card">
-          <h4>Action B — The "Secret Mentor" Read</h4>
+          <h4>Action B — Regional Historical Parallels</h4>
+          <p>${actionBIntro}</p>
           ${mentors}
         </div>
         <div class="action-card">
